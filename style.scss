@@ -251,18 +251,36 @@ h2.wp-block-post-title {
 		position: static; // Override default editor value.
 		overflow: hidden;
 		padding: var(--wp--custom--spacing--unit-20);
-		width: 100%;
+		width: 100% !important; // Need to override custom position rules.
 		height: 100%;
 		display: flex;
-
-		// Inherit position as set from Cover block.
-		align-items: inherit;
-		justify-content: inherit;
+		flex-direction: column;
 
 		// Cause word-wrap.
 		> * {
 			max-width: 100%;
 		}
+	}
+
+	// Inherit position as set from Cover block.
+	// Unfortunately, `inherit` doesn't work here.
+	&[class*="top-"] .wp-block-cover__inner-container {
+		justify-content: flex-start;
+	}
+	&[class*="center"] .wp-block-cover__inner-container {
+		justify-content: center;
+	}
+	&[class*="bottom-"] .wp-block-cover__inner-container {
+		justify-content: flex-end;
+	}
+	&[class*="-left"] .wp-block-cover__inner-container {
+		align-items: flex-start;
+	}
+	&[class*="-center"] .wp-block-cover__inner-container {
+		align-items: center;
+	}
+	&[class*="-right"] .wp-block-cover__inner-container {
+		align-items: flex-end;
 	}
 
 	// Vertical text.

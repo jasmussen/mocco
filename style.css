@@ -216,13 +216,30 @@ h2.wp-block-post-title {
   position: static;
   overflow: hidden;
   padding: var(--wp--custom--spacing--unit-20);
-  width: 100%;
+  width: 100% !important;
   height: 100%;
   display: flex;
-  align-items: inherit;
-  justify-content: inherit; }
+  flex-direction: column; }
   .wp-block-cover .wp-block-cover__inner-container > * {
     max-width: 100%; }
+
+.wp-block-cover[class*="top-"] .wp-block-cover__inner-container {
+  justify-content: flex-start; }
+
+.wp-block-cover[class*="center"] .wp-block-cover__inner-container {
+  justify-content: center; }
+
+.wp-block-cover[class*="bottom-"] .wp-block-cover__inner-container {
+  justify-content: flex-end; }
+
+.wp-block-cover[class*="-left"] .wp-block-cover__inner-container {
+  align-items: flex-start; }
+
+.wp-block-cover[class*="-center"] .wp-block-cover__inner-container {
+  align-items: center; }
+
+.wp-block-cover[class*="-right"] .wp-block-cover__inner-container {
+  align-items: flex-end; }
 
 .wp-block-cover .has-vertical-text {
   position: absolute;
