@@ -1,5 +1,6 @@
 
 {
+	"$schema": "https://json.schemastore.org/theme-v1.json",
 	"version": 1,
 	"templateParts": [
 		{
@@ -68,9 +69,24 @@
 			],
 			"gradients": [
 				{
-					"slug": "red-to-purple",
-					"gradient": "linear-gradient(160deg, var(--wp--preset--color--red), var(--wp--preset--color--purple))",
-					"name": "Red to Purple"
+					"slug": "blue-to-red",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--light-blue), var(--wp--preset--color--blinding-red))",
+					"name": "Red to Blue"
+				},
+				{
+					"slug": "red-to-yellow",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--blinding-red), var(--wp--preset--color--contrast-yellow))",
+					"name": "Red to Yellow"
+				},
+				{
+					"slug": "blue-to-yellow",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--light-blue), var(--wp--preset--color--contrast-yellow))",
+					"name": "Blue to Yellow"
+				},
+				{
+					"slug": "blue-to-red-to-yellow",
+					"gradient": "linear-gradient(135deg, var(--wp--preset--color--light-blue), var(--wp--preset--color--blinding-red), var(--wp--preset--color--contrast-yellow))",
+					"name": "Blue to Red to Yellow"
 				}
 			]
 		},
@@ -184,8 +200,8 @@
 	},
 	"styles": {
 		"spacing": {
-			"blockGap": "2.5rem",
-			"margin": "0"
+			"margin": "0",
+			"blockGap": "2.5rem"
 		},
 		"color": {
 			"background": "var(--wp--preset--color--interface-mode-white)",
@@ -254,10 +270,10 @@
 			"core/cover": {
 				"spacing": {
 					"padding": {
-						"top": "var(--wp--custom--spacing--unit-20)",
-						"right": "var(--wp--custom--spacing--unit-20)",
-						"bottom": "var(--wp--custom--spacing--unit-20)",
-						"left": "var(--wp--custom--spacing--unit-20)"
+						"top": "0",
+						"right": "0",
+						"bottom": "0",
+						"left": "0"
 					}
 				}
 			},
