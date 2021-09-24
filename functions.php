@@ -10,21 +10,6 @@ if ( ! function_exists( 'moccotheme_setup' ) ) {
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'responsive-embeds' );
-
-		// Editor.
-		// @todo: Not all of these are needed anymore.
-		add_theme_support( 'custom-line-height' );
-		add_theme_support( 'align-wide' );
-		add_theme_support( 'editor-styles' );
-		//add_theme_support( 'wp-block-styles' );
-		//add_theme_support( 'dark-editor-style' );
-		add_theme_support( 'custom-units' );
-		add_theme_support( 'custom-spacing' );
-
-		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'moccotheme' ),
-		) );
-
 		add_theme_support( 'html5', array(
 			'search-form',
 			'comment-form',
@@ -33,6 +18,9 @@ if ( ! function_exists( 'moccotheme_setup' ) ) {
 			'caption',
 		) );
 
+		// Editor.
+		add_theme_support( 'editor-styles' );
+
 		// Increase JPEG quality.
 		add_filter( 'jpeg_quality', function( $arg ) { return 90; } );
 
@@ -40,26 +28,32 @@ if ( ! function_exists( 'moccotheme_setup' ) ) {
 		add_image_size( 'custom-thumbnails', 1620, 720 );
 		add_image_size( 'big-thumbnails', 2160, 1080 );
 
-		// Experiment, load the actual stylesheet into the editor.
+		// Load the theme stylesheet into the editor.
 		add_editor_style( 'style.css' );
 	}
 }
 add_action( 'after_setup_theme', 'moccotheme_setup' );
 
-// Disable search autocomplete.
+
+/**
+ * Disable search autocomplete.
+ */
+
 function search_disable_autocompete( $content ) {
- 	$content = preg_replace( '/\binput\b/i', 'input autocomplete="off"', $content );
+	$content = preg_replace( '/\binput\b/i', 'input autocomplete="off"', $content );
 	return $content;
 }
 add_filter( 'get_search_form', 'search_disable_autocompete' );
 
 
 /**
- * Favicon.
+ * Favicon & theme color.
  */
 
 function mocco_favicon() { ?>
 <link rel="icon" type="image/svg+xml" href="<?php echo get_template_directory_uri(); ?>/assets/favicon.svg">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <?php }
 add_action('wp_head', 'mocco_favicon');
 
@@ -102,7 +96,6 @@ add_action('init', function() {
 
 /**
  * Custom post types and templates.
- * @todo: maybe extract to separate plugin.
  */
 
 function mocco_custom_post_type() {
