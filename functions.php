@@ -96,7 +96,6 @@ add_action('init', function() {
 
 /**
  * Custom post types and templates.
- * @todo: maybe extract to separate plugin.
  */
 
 function mocco_custom_post_type() {

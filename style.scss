@@ -147,7 +147,6 @@ strong {
  */
 
 // Navigation. @todo: refactor to theme.json when gap support lands.
-// @todo: change templates so site title is inside the nav block container.
 .wp-block-navigation .wp-block-navigation__container,
 .wp-block-navigation .wp-block-page-list {
 	gap: var(--wp--custom--spacing--unit-40);
