@@ -208,16 +208,17 @@ strong {
 }
 
 // Galleries.
-// @todo: refactor to the new gallery style when it has gap support.
 .wp-block-gallery {
-	// Setting the font size allows the 1em margin to inherit the grid value.
-	font-size: var(--wp--custom--spacing--unit-20);
+	// @todo: refactor to theme.json when it has gap support.
+	--gallery-block--gutter-size: var(--wp--custom--spacing--unit-20);
 
-	.blocks-gallery-grid {
-		gap: 1em;
+	&, // New gallery.
+	.blocks-gallery-grid { // Legacy gallery.
+		gap: var(--wp--custom--spacing--unit-20);
 	}
 
-	.blocks-gallery-item {
+	.wp-block-image, // New gallery.
+	.blocks-gallery-item { // Legacy gallery.
 		margin: 0 !important;
 	}
 }

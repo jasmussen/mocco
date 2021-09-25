@@ -193,9 +193,11 @@ strong {
   margin-left: -0.25rem; }
 
 .wp-block-gallery {
-  font-size: var(--wp--custom--spacing--unit-20); }
+  --gallery-block--gutter-size: var(--wp--custom--spacing--unit-20); }
+  .wp-block-gallery,
   .wp-block-gallery .blocks-gallery-grid {
-    gap: 1em; }
+    gap: var(--wp--custom--spacing--unit-20); }
+  .wp-block-gallery .wp-block-image,
   .wp-block-gallery .blocks-gallery-item {
     margin: 0 !important; }
 
