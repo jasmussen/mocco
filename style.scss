@@ -126,6 +126,8 @@ h4,
 h5,
 h6 {
 	margin-top: calc(var(--wp--style--block-gap) + 1rem);
+	word-break: break-all; // Standard.
+	word-break: break-word; // Webkit.
 }
 
 ol,
@@ -288,7 +290,7 @@ h2.wp-block-post-title {
 		position: absolute;
 		top: var(--wp--custom--spacing--unit-20);
 		bottom: var(--wp--custom--spacing--unit-20);
-		right: var(--wp--custom--spacing--unit-20);
+		right: calc(var(--wp--custom--spacing--unit-20) + 0.25em);
 		line-height: 1em;
 		font-size: clamp(
 			var(--wp--preset--font-size--tiny),
@@ -301,7 +303,7 @@ h2.wp-block-post-title {
 			content: "";
 			display: block;
 			margin-left: var(--wp--custom--spacing--unit-60);
-			margin-right: -var(--wp--custom--spacing--unit-05);
+			margin-right: -0.25em;
 			width: var(--wp--custom--spacing--unit-20);
 			height: var(--wp--custom--spacing--unit-20);
 			background: currentColor;
@@ -312,6 +314,18 @@ h2.wp-block-post-title {
 
 		a {
 			color: currentColor;
+
+			// Make a bigger hit area.
+			position: relative;
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: -2em;
+				right: -2em;
+				bottom: -2em;
+				left: -2em;
+			}
 		}
 	}
 }
@@ -720,8 +734,8 @@ input[type="text"] {
 			left: 0;
 			padding: var(--wp--custom--spacing--unit-20);
 		
-			// This affects the effect math.
-			perspective: 100px;
+			// The lower the number, the bigger the effect.
+			perspective: 30vw;
 
 			// Admin-bar aware.
 			&.admin-bar {
@@ -732,28 +746,20 @@ input[type="text"] {
 				}
 			}
 
-			// This would make it work in Firefox that which interprets perspective inheritance differently.
+			// Firefox and Chrome 94+ change their perspective inheritance.
 			// https://bugzilla.mozilla.org/show_bug.cgi?id=716524
-			// However due to how hover/active works with this, it's off here.
-			//* {
-			//	transform-style: preserve-3d;
-			//}
+			.wp-site-blocks,
+			.wp-block-post-template,
+			.wp-block-template-part,
+			.wp-block-post,
+			.wp-block-post-content,
+			.wp-block-post-content * {
+				transform-style: preserve-3d;
+			}
 		}
 	}
 
-	// Punch!
-	.wp-site-blocks > p,
-	.wp-block-post-content > p {
-		transition: all .3s cubic-bezier(.75,-0.5,0,1.75);
-
-		&:active {
-			position: relative;
-			z-index: 1;
-			transform: translateZ(-1px) rotate3d(0,-1,0,0.1deg);
-		}
-	}
-
-	// 3D rotation for the big ones.
+	// 3D rotation.
 	.has-poster,
 	.wp-block-image,
 	.wp-block-separator.is-style-wide,
@@ -763,15 +769,7 @@ input[type="text"] {
 		user-select: none;
 		transition: all .3s cubic-bezier(.75,-0.5,0,1.75);
 
-		&:hover {
-			position: relative;
-			z-index: 1;
-			transform: rotate3d(0,-1,0,0.1deg);
-		}
-
 		&:active {
-			position: relative;
-			z-index: 1;
 			transform: translateZ(-1px) rotate3d(0,-1,0,1deg);
 		}
 	}

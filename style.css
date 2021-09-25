@@ -135,7 +135,9 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: calc(var(--wp--style--block-gap) + 1rem); }
+  margin-top: calc(var(--wp--style--block-gap) + 1rem);
+  word-break: break-all;
+  word-break: break-word; }
 
 ol,
 ul,
@@ -245,14 +247,14 @@ h2.wp-block-post-title {
   position: absolute;
   top: var(--wp--custom--spacing--unit-20);
   bottom: var(--wp--custom--spacing--unit-20);
-  right: var(--wp--custom--spacing--unit-20);
+  right: calc(var(--wp--custom--spacing--unit-20) + 0.25em);
   line-height: 1em;
   font-size: clamp(var(--wp--preset--font-size--tiny), 2vw, var(--wp--preset--font-size--small)); }
   .wp-block-cover .has-vertical-text::before {
     content: "";
     display: block;
     margin-left: var(--wp--custom--spacing--unit-60);
-    margin-right: -var(--wp--custom--spacing--unit-05);
+    margin-right: -0.25em;
     width: var(--wp--custom--spacing--unit-20);
     height: var(--wp--custom--spacing--unit-20);
     background: currentColor;
@@ -260,7 +262,16 @@ h2.wp-block-post-title {
     margin-bottom: var(--wp--custom--spacing--unit-10);
     border-radius: var(--wp--custom--border-radius); }
   .wp-block-cover .has-vertical-text a {
-    color: currentColor; }
+    color: currentColor;
+    position: relative; }
+    .wp-block-cover .has-vertical-text a::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -2em;
+      right: -2em;
+      bottom: -2em;
+      left: -2em; }
 
 .wp-block-image:not(.is-style-rounded) img {
   border-radius: var(--wp--custom--border-radius); }
@@ -533,21 +544,19 @@ html:not(.editor-styles-wrapper):not(.has-modal-open) {
     bottom: 0;
     left: 0;
     padding: var(--wp--custom--spacing--unit-20);
-    perspective: 100px; }
+    perspective: 30vw; }
     html:not(.editor-styles-wrapper):not(.has-modal-open) body.admin-bar {
       padding-top: calc( 46px + var(--wp--custom--spacing--unit-20)); }
       @media (min-width: 783px) {
         html:not(.editor-styles-wrapper):not(.has-modal-open) body.admin-bar {
           padding-top: calc( 32px + var(--wp--custom--spacing--unit-20)); } }
-
-html:not(.editor-styles-wrapper) .wp-site-blocks > p,
-html:not(.editor-styles-wrapper) .wp-block-post-content > p {
-  transition: all 0.3s cubic-bezier(0.75, -0.5, 0, 1.75); }
-  html:not(.editor-styles-wrapper) .wp-site-blocks > p:active,
-  html:not(.editor-styles-wrapper) .wp-block-post-content > p:active {
-    position: relative;
-    z-index: 1;
-    transform: translateZ(-1px) rotate3d(0, -1, 0, 0.1deg); }
+    html:not(.editor-styles-wrapper):not(.has-modal-open) body .wp-site-blocks,
+    html:not(.editor-styles-wrapper):not(.has-modal-open) body .wp-block-post-template,
+    html:not(.editor-styles-wrapper):not(.has-modal-open) body .wp-block-template-part,
+    html:not(.editor-styles-wrapper):not(.has-modal-open) body .wp-block-post,
+    html:not(.editor-styles-wrapper):not(.has-modal-open) body .wp-block-post-content,
+    html:not(.editor-styles-wrapper):not(.has-modal-open) body .wp-block-post-content * {
+      transform-style: preserve-3d; }
 
 html:not(.editor-styles-wrapper) .has-poster,
 html:not(.editor-styles-wrapper) .wp-block-image,
@@ -560,21 +569,11 @@ html:not(.editor-styles-wrapper) .wp-block-cover {
       -ms-user-select: none;
           user-select: none;
   transition: all 0.3s cubic-bezier(0.75, -0.5, 0, 1.75); }
-  html:not(.editor-styles-wrapper) .has-poster:hover,
-  html:not(.editor-styles-wrapper) .wp-block-image:hover,
-  html:not(.editor-styles-wrapper) .wp-block-separator.is-style-wide:hover,
-  html:not(.editor-styles-wrapper) .blocks-gallery-item:hover,
-  html:not(.editor-styles-wrapper) .wp-block-cover:hover {
-    position: relative;
-    z-index: 1;
-    transform: rotate3d(0, -1, 0, 0.1deg); }
   html:not(.editor-styles-wrapper) .has-poster:active,
   html:not(.editor-styles-wrapper) .wp-block-image:active,
   html:not(.editor-styles-wrapper) .wp-block-separator.is-style-wide:active,
   html:not(.editor-styles-wrapper) .blocks-gallery-item:active,
   html:not(.editor-styles-wrapper) .wp-block-cover:active {
-    position: relative;
-    z-index: 1;
     transform: translateZ(-1px) rotate3d(0, -1, 0, 1deg); }
 
 /**
