@@ -931,6 +931,10 @@ body {
 	@include fluid-typography(24, 48);
 }
 
+.has-medium-responsive-font-size.has-medium-responsive-font-size {
+	@include fluid-typography(64, 240);
+}
+
 .has-big-responsive-font-size.has-big-responsive-font-size {
 	@include fluid-typography(72, 380);
 }

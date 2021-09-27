@@ -664,6 +664,11 @@ body {
   --max-font-size: 48;
   font-size: clamp(calc(var(--min-font-size) * 1px), calc( var(--min-font-size) / var(--root-font-size) * 1rem + (var(--max-font-size) - var(--min-font-size)) * (100vw - var(--min-viewport) * 1px) / (var(--max-viewport) - var(--min-viewport))), calc(var(--max-font-size) * 1px)); }
 
+.has-medium-responsive-font-size.has-medium-responsive-font-size {
+  --min-font-size: 64;
+  --max-font-size: 240;
+  font-size: clamp(calc(var(--min-font-size) * 1px), calc( var(--min-font-size) / var(--root-font-size) * 1rem + (var(--max-font-size) - var(--min-font-size)) * (100vw - var(--min-viewport) * 1px) / (var(--max-viewport) - var(--min-viewport))), calc(var(--max-font-size) * 1px)); }
+
 .has-big-responsive-font-size.has-big-responsive-font-size {
   --min-font-size: 72;
   --max-font-size: 380;
