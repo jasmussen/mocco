@@ -229,7 +229,7 @@ h2.wp-block-post-title {
 	max-width: var(--wp--custom--width--center-column);
 	margin-left: auto;
 	margin-right: auto;
-	font-size: var(--wp--preset--font-size--huge);
+	font-size: var(--wp--preset--font-size--xxl);
 
 	// Plain style.
 	a {
@@ -266,22 +266,52 @@ h2.wp-block-post-title {
 
 	// Inherit position as set from Cover block.
 	// Unfortunately, `inherit` doesn't work here.
-	&[class*="top-"] .wp-block-cover__inner-container {
-		justify-content: flex-start;
-	}
-	&[class*="center"] .wp-block-cover__inner-container {
+
+	// Unset center/center alignment.
+	.wp-block-cover__inner-container {
 		justify-content: center;
-	}
-	&[class*="bottom-"] .wp-block-cover__inner-container {
-		justify-content: flex-end;
-	}
-	&[class*="-left"] .wp-block-cover__inner-container {
-		align-items: flex-start;
-	}
-	&[class*="-center"] .wp-block-cover__inner-container {
 		align-items: center;
 	}
-	&[class*="-right"] .wp-block-cover__inner-container {
+
+	// Top row.
+	&.is-position-top-left .wp-block-cover__inner-container {
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	&.is-position-top-center .wp-block-cover__inner-container {
+		justify-content: flex-start;
+		align-items: center;
+	}
+	&.is-position-top-right .wp-block-cover__inner-container {
+		justify-content: flex-start;
+		align-items: flex-end;
+	}
+
+	// Middle row.
+	&.is-position-center-left .wp-block-cover__inner-container {
+		justify-content: center;
+		align-items: flex-start;
+	}
+	&.is-position-center-center .wp-block-cover__inner-container {
+		justify-content: center;
+		align-items: center;
+	}
+	&.is-position-center-right .wp-block-cover__inner-container {
+		justify-content: center;
+		align-items: flex-end;
+	}
+
+	// Bottom row.
+	&.is-position-bottom-left .wp-block-cover__inner-container {
+		justify-content: flex-end;
+		align-items: flex-start;
+	}
+	&.is-position-bottom-center .wp-block-cover__inner-container {
+		justify-content: flex-end;
+		align-items: center;
+	}
+	&.is-position-bottom-right .wp-block-cover__inner-container {
+		justify-content: flex-end;
 		align-items: flex-end;
 	}
 
@@ -363,7 +393,7 @@ figcaption {
 	&.is-style-large {
 		padding-left: 0;
 		border-left: 0;
-		font-size: var(--wp--preset--font-size--huge);
+		font-size: var(--wp--preset--font-size--xxl);
 		text-align: center;
 
 		cite {
@@ -478,7 +508,7 @@ textarea {
 	padding: var(--wp--custom--spacing--unit-10);
 	appearance: none;
 	font-family: var(--wp--custom--font-primary);
-	font-size: var(--wp--preset--font-size--normal);
+	font-size: var(--wp--preset--font-size--medium);
 }
 
 // Inputs.
@@ -553,7 +583,7 @@ input[type="text"] {
 	font-size: clamp(
 		var(--wp--preset--font-size--small),
 		2vw,
-		var(--wp--preset--font-size--normal)
+		var(--wp--preset--font-size--medium)
 	);
 }
 
@@ -577,7 +607,7 @@ input[type="text"] {
 	.wp-block-post-title,
 	.wp-block-post-date,
 	.wp-block-post-terms {
-		line-height: var(--wp--preset--font-size--normal);
+		line-height: var(--wp--preset--font-size--medium);
 	}
 
 	// Permalink.
@@ -662,7 +692,7 @@ input[type="text"] {
 
 		a {
 			display: inline-block;
-			line-height: var(--wp--preset--font-size--normal);
+			line-height: var(--wp--preset--font-size--medium);
 			overflow: hidden;
 			width: var(--wp--custom--spacing--unit-10);
 			box-shadow: none;
@@ -800,47 +830,6 @@ input[type="text"] {
 	}
 }
 
-// Viewport sized typography.
-.has-small-responsive-font-size.has-small-responsive-font-size,
-.has-responsive-font-size.has-responsive-font-size,
-.has-medium-responsive-font-size.has-medium-responsive-font-size,
-.has-big-responsive-font-size.has-big-responsive-font-size,
-.has-huge-responsive-font-size.has-huge-responsive-font-size,
-.has-giant-responsive-font-size.has-giant-responsive-font-size {
-	line-height: 1;
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.has-small-responsive-font-size.has-small-responsive-font-size {
-	font-size: m#{a}x( var(--wp--preset--font-size--normal), 7vw);
-}
-
-.has-responsive-font-size.has-responsive-font-size {
-	font-size: m#{a}x( var(--wp--preset--font-size--normal), 9vw);
-}
-
-.has-medium-responsive-font-size.has-medium-responsive-font-size {
-	font-size: m#{a}x( var(--wp--preset--font-size--medium), 12vw);
-}
-
-.has-big-responsive-font-size.has-big-responsive-font-size {
-	font-size: m#{a}x( var(--wp--preset--font-size--large), 16vw);
-}
-
-.has-huge-responsive-font-size.has-huge-responsive-font-size {
-	font-size: m#{a}x( var(--wp--preset--font-size--large), 24vw);
-}
-
-.has-giant-responsive-font-size.has-giant-responsive-font-size {
-	//font-size: m#{a}x( var(--wp--preset--font-size--large), 30vw);
-	font-size: clamp(
-		var(--wp--preset--font-size--tiny),
-		44vw,
-		700px
-	);
-}
-
 // Vertical text.
 .has-vertical-text {
 	writing-mode: vertical-rl;
@@ -904,6 +893,49 @@ input[type="text"] {
 }
 
 
+// Viewport sized typography.
+// @todo: explore extracting the variables from theme.json.
+// @todo: replace with small, medium, large, xl, xxl. Extrapolate "tiny" from small.
+[class*="responsive-font-size"] {
+	line-height: 1;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+body {
+	// Fluid typography with breakpoints.
+	--root-font-size: 18;
+
+	// Pixel values, but they must be unitless.
+	--min-viewport: 480;
+	--max-viewport: 1392;
+}
+
+@mixin fluid-typography($min-font-size, $max-font-size) {
+	// Pixel values, but they must be unitless.
+	--min-font-size: #{ $min-font-size };
+	--max-font-size: #{ $max-font-size };
+
+	font-size: clamp(
+		calc(var(--min-font-size) * 1px),
+		calc(
+			var(--min-font-size) / var(--root-font-size) * 1rem
+			+ (var(--max-font-size) - var(--min-font-size))
+			* (100vw - var(--min-viewport) * 1px) / (var(--max-viewport) - var(--min-viewport))
+		),
+		calc(var(--max-font-size) * 1px)
+	);
+}
+
+.has-small-responsive-font-size.has-small-responsive-font-size {
+	@include fluid-typography(24, 48);
+}
+
+.has-big-responsive-font-size.has-big-responsive-font-size {
+	@include fluid-typography(72, 380);
+}
+
+
 /**
  * WordPress & editor specific edits.
  */
@@ -915,5 +947,5 @@ input[type="text"] {
 .wp-block-post-title { // Editor.
 	margin-top: 5rem;
 	margin-bottom: 2rem;
-	font-size: var(--wp--preset--font-size--huge);
+	font-size: var(--wp--preset--font-size--xxl);
 }
