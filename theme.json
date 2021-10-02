@@ -138,6 +138,11 @@
 					"fontFamily": "\"Hoefler Text\", \"Baskerville Old Face\", Garamond, \"Times New Roman\", serif;",
 					"slug": "hoefler-text",
 					"name": "Hoefler Text"
+				},
+				{
+					"fontFamily": "Consolas,monaco,monospace;",
+					"slug": "code",
+					"name": "Code"
 				}
 			]
 		},

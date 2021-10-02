@@ -114,6 +114,19 @@ a {
 	}
 }
 
+code {
+	font-family: var(--wp--preset--font-family--code);
+	font-size: 0.9em;
+}
+
+code,
+mark {
+	background-color: var(--wp--preset--color--pretty-gray);
+	border-radius: var(--wp--custom--border-radius);
+	padding-left: 0.2em;
+	padding-right: 0.2em;
+}
+
 
 /**
  * Margins & Line-height.
@@ -248,6 +261,12 @@ h2.wp-block-post-title {
 		min-height: 0;
 	}
 
+	// Stretch placeholder to match.
+	// @todo: suggest upstream?
+	.components-placeholder {
+		height: 100%;
+	}
+
 	// Crop text.
 	.wp-block-cover__inner-container {
 		position: static; // Override default editor value.
@@ -358,6 +377,11 @@ h2.wp-block-post-title {
 			}
 		}
 	}
+}
+
+// Code.
+.wp-block-code code {
+	padding: var(--wp--custom--spacing--unit-10) var(--wp--custom--spacing--unit-20);
 }
 
 // Images.
@@ -928,7 +952,7 @@ body {
 }
 
 .has-small-responsive-font-size.has-small-responsive-font-size {
-	@include fluid-typography(24, 48);
+	@include fluid-typography(12, 48);
 }
 
 .has-medium-responsive-font-size.has-medium-responsive-font-size {
