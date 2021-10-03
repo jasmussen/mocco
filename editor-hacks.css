@@ -1,8 +1,0 @@
-/**
- * Block editor hacks.
- *
- * This stylesheet exists to temporarily override aspects of the block editor as they are improved and developed in the core project.
- * Styles here have the lowest possible specificity, not being output inline, and with no `editor-styles-wrapper` prefix.
- */
-.post-type-work .editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
-  max-width: 1392px; }
