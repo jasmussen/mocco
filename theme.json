@@ -37,9 +37,19 @@
 					"name": "Black"
 				},
 				{
+					"slug": "black-transparent",
+					"color": "rgba(0,0,0,0.2)",
+					"name": "Black Transparent"
+				},
+				{
 					"slug": "white",
 					"color": "#ffffff",
 					"name": "White"
+				},
+				{
+					"slug": "white-transparent",
+					"color": "rgba(255,255,255,0.2)",
+					"name": "White Transparent"
 				},
 				{
 					"slug": "pretty-gray",
@@ -138,6 +148,11 @@
 					"fontFamily": "\"Hoefler Text\", \"Baskerville Old Face\", Garamond, \"Times New Roman\", serif;",
 					"slug": "hoefler-text",
 					"name": "Hoefler Text"
+				},
+				{
+					"fontFamily": "Consolas,monaco,monospace;",
+					"slug": "code",
+					"name": "Code"
 				}
 			]
 		},
