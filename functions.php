@@ -7,18 +7,10 @@ if ( ! function_exists( 'moccotheme_setup' ) ) {
 	function moccotheme_setup() {
 
 		// Base features.
+		// @todo, these can be retired after 11.8.
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'responsive-embeds' );
-		add_theme_support( 'html5', array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		) );
-
-		// Editor.
 		add_theme_support( 'editor-styles' );
 
 		// Increase JPEG quality.
@@ -78,20 +70,6 @@ function moccotheme_styles() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'moccotheme_styles' );
-
-
-/**
- * Hack to load custom stylesheet into both editors with low specificity.
- * It's the only other way to load CSS into the site editor without .editor-styles-wrapper prefix.
- */
-
-add_action('init', function() {
-	wp_register_style('editor-hacks', get_template_directory_uri() . '/editor-hacks.css');
- 
-	register_block_type('mocco/editor-hacks', [
-		'style' => 'editor-hacks',
-	]);
-});
 
 
 /**

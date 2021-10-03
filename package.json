@@ -6,9 +6,8 @@
 	"scripts": {
 		"sass-style": "node-sass --watch style.scss --output .",
 		"autoprefixer-style": "postcss --watch style.css --use autoprefixer --no-map -d .",
-		"sass-hacks": "node-sass --watch editor-hacks.scss --output .",
 		"autoprefixer-hacks": "postcss --watch editor-hacks.css --use autoprefixer --no-map -d .",
-		"dev": "concurrently \"npm run sass-style\" \"npm run autoprefixer-style\" \"npm run sass-hacks\" \"npm run autoprefixer-hacks\""
+		"dev": "concurrently \"npm run sass-style\" \"npm run autoprefixer-style\""
 	},
 	"keywords": [
 		"theme",

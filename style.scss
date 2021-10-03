@@ -38,19 +38,13 @@ $colors: (
 @each $color, $contrast-color, $link-color in $colors {
 
 	// Background colors.
-	.has-#{$color}-background-color {
-		background-color: var(--wp--preset--color--#{$color});
+	:where(.has-#{$color}-background-color) {
 		color: var(--wp--preset--color--#{$contrast-color});
 
-		a,
+		/*a,
 		a:hover {
-			color: var(--wp--preset--color--#{$link-color});
-		}
-	}
-
-	// Text colors.
-	.has-#{$color}-color {
-		color: var(--wp--preset--color--#{$color});
+			color: currentColor;
+		}*/
 	}
 }
 
@@ -87,6 +81,7 @@ a {
 	text-decoration: none;
 	transition: all var(--wp--custom--transition) ease;
 	box-shadow: 0 1px 0 0 currentColor, inset 0 -2px 0 0 currentColor;
+	color: currentColor;
 
 	&:focus {
 		outline: 2px solid transparent;
@@ -159,19 +154,22 @@ strong {
  * Blocks.
  */
 
-// Navigation. @todo: refactor to theme.json when gap support lands.
-.wp-block-navigation .wp-block-navigation__container,
-.wp-block-navigation .wp-block-page-list {
-	gap: var(--wp--custom--spacing--unit-40);
-
-	.wp-block-navigation-item {
-		margin-right: 0;
+// Hide navigation underlines unless in header area.
+.is-root-container, // Editor.
+.wp-block-post-content {
+	.wp-block-navigation a:not(:focus) {
+		box-shadow: none;
 	}
 }
 
 // Hide the home icon. @todo: needs classes for it.
 .wp-block-page-list > li:first-child {
 	display: none;
+}
+
+// Site logo.
+.wp-block-site-logo a {
+	box-shadow: none;
 }
 
 // Separator.
@@ -342,9 +340,9 @@ h2.wp-block-post-title {
 		right: calc(var(--wp--custom--spacing--unit-20) + 0.25em);
 		line-height: 1em;
 		font-size: clamp(
-			var(--wp--preset--font-size--tiny),
+			var(--wp--preset--font-size--small),
 			2vw,
-			var(--wp--preset--font-size--small)
+			var(--wp--preset--font-size--medium)
 		);
 	
 		// Black square
@@ -393,7 +391,7 @@ h2.wp-block-post-title {
 
 // Captions.
 figcaption {
-	font-size: var(--wp--preset--font-size--small);
+	font-size: var(--wp--preset--font-size--large);
 	color: var(--wp--preset--color--text-contrast-gray);
 
 	[data-align="wide"] &,
@@ -409,7 +407,7 @@ figcaption {
 
 	&.is-style-large cite,
 	cite {
-		font-size: var(--wp--preset--font-size--small);
+		font-size: var(--wp--preset--font-size--large);
 		color: var(--wp--preset--color--text-contrast-gray);
 		font-style: normal;
 	}
@@ -443,17 +441,8 @@ figcaption {
 
 // Custom template part name.
 .site-header {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-
 	// Responsive margin. max obfuscated for sass compat.
 	margin-bottom: m#{a}x( var(--wp--custom--spacing--unit-60), 6vw);
-
-	.wp-block-navigation {
-		width: 100%;
-	}
 
 	// Use site title block for SVG logo.
 	.wp-block-site-title {
@@ -527,17 +516,18 @@ figcaption {
  * Forms.
  */
 
-input,
+//input,
 textarea {
 	padding: var(--wp--custom--spacing--unit-10);
 	appearance: none;
 	font-family: var(--wp--custom--font-primary);
-	font-size: var(--wp--preset--font-size--medium);
+	font-size: var(--wp--preset--font-size--large);
 }
 
 // Inputs.
 textarea.components-textarea-control__input, // Post editor.
 textarea,
+input,
 input[type="email"],
 input[type="search"][type="search"],
 input[type="text"] {
@@ -576,8 +566,8 @@ input[type="text"] {
  */
 
 // Full container container width.
-.is-root-container, // Editor.
-.wp-site-blocks {
+.is-root-container:not(.edit-site-block-editor__block-list), // Post editor.
+.wp-site-blocks > * {
 	max-width: var(--wp--custom--width--site);
 	margin-left: auto;
 	margin-right: auto;
@@ -593,6 +583,13 @@ input[type="text"] {
 	margin-bottom: m#{a}x( var(--wp--custom--spacing--unit-60), 8vw);
 }
 
+// Editor hack, "full-wide" for the Work CPT.
+.post-type-work .editor-styles-wrapper {
+	.block-editor-block-list__layout.is-root-container > * {
+		max-width: var(--wp--custom--width--site);
+	}
+}
+
 
 /**
  * Posts.
@@ -605,9 +602,9 @@ input[type="text"] {
 
 .wp-block-post-content {
 	font-size: clamp(
-		var(--wp--preset--font-size--small),
+		var(--wp--preset--font-size--medium),
 		2vw,
-		var(--wp--preset--font-size--medium)
+		var(--wp--preset--font-size--large)
 	);
 }
 
@@ -618,9 +615,9 @@ input[type="text"] {
 	margin-right: auto;
 	max-width: var(--wp--custom--width--center-column);
 	font-size: clamp(
-		var(--wp--preset--font-size--tiny),
+		var(--wp--preset--font-size--small),
 		2vw,
-		var(--wp--preset--font-size--small)
+		var(--wp--preset--font-size--medium)
 	);
 	gap: var(--wp--custom--spacing--unit-40);
 
@@ -631,7 +628,7 @@ input[type="text"] {
 	.wp-block-post-title,
 	.wp-block-post-date,
 	.wp-block-post-terms {
-		line-height: var(--wp--preset--font-size--medium);
+		line-height: var(--wp--preset--font-size--large);
 	}
 
 	// Permalink.
@@ -682,7 +679,7 @@ input[type="text"] {
 	margin-top: var(--wp--custom--spacing--unit-120);
 	margin-bottom: var(--wp--custom--spacing--unit-120);
 	line-height: var(--wp--custom--spacing--unit-20);
-	font-size: var(--wp--preset--font-size--small);
+	font-size: var(--wp--preset--font-size--large);
 
 	// Center.
 	margin-left: auto !important; // @todo: this specificity needed to override editor styles.
@@ -739,7 +736,7 @@ input[type="text"] {
 
 	.wp-block-post-title,
 	p {
-		font-size: var(--wp--preset--font-size--small);
+		font-size: var(--wp--preset--font-size--medium);
 	}
 }
 
@@ -772,13 +769,14 @@ input[type="text"] {
  * 3D fun.
  */
 
- html:not(.editor-styles-wrapper) {
+html {
 	// Perspective for viewport height, leverages scroll but is less compatible.
 	&:not(.has-modal-open) {
 		overflow: hidden;
 	
-		body {
+		.wp-site-blocks {
 			height: 100vh;
+			width: 100%;
 			overflow-x: hidden;
 			overflow-y: auto;
 			position: absolute;
@@ -790,26 +788,16 @@ input[type="text"] {
 		
 			// The lower the number, the bigger the effect.
 			perspective: 30vw;
+		}
 
-			// Admin-bar aware.
-			&.admin-bar {
-				padding-top: calc( 46px + var(--wp--custom--spacing--unit-20) );
-		
-				@media (min-width: #{ (783px) }) {
-					padding-top: calc( 32px + var(--wp--custom--spacing--unit-20) );
-				}
-			}
-
-			// Firefox and Chrome 94+ change their perspective inheritance.
-			// https://bugzilla.mozilla.org/show_bug.cgi?id=716524
-			.wp-site-blocks,
-			.wp-block-post-template,
-			.wp-block-template-part,
-			.wp-block-post,
-			.wp-block-post-content,
-			.wp-block-post-content * {
-				transform-style: preserve-3d;
-			}
+		// Firefox and Chrome 94+ change their perspective inheritance.
+		// https://bugzilla.mozilla.org/show_bug.cgi?id=716524
+		.wp-block-post-template,
+		.wp-block-template-part,
+		.wp-block-post,
+		.wp-block-post-content,
+		.wp-block-post-content * {
+			transform-style: preserve-3d;
 		}
 	}
 
@@ -859,13 +847,6 @@ input[type="text"] {
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
 	margin: 0;
-
-	font-size: clamp(
-		var(--wp--preset--font-size--tiny),
-		2vw,
-		var(--wp--preset--font-size--small)
-	);
-
 }
 
 // Groups with posters inside.
@@ -919,7 +900,6 @@ input[type="text"] {
 
 // Viewport sized typography.
 // @todo: explore extracting the variables from theme.json.
-// @todo: replace with small, medium, large, xl, xxl. Extrapolate "tiny" from small.
 [class*="responsive-font-size"] {
 	line-height: 1;
 	margin-top: 0;
@@ -956,10 +936,14 @@ body {
 }
 
 .has-medium-responsive-font-size.has-medium-responsive-font-size {
+	@include fluid-typography(32, 120);
+}
+
+.has-large-responsive-font-size.has-large-responsive-font-size {
 	@include fluid-typography(64, 240);
 }
 
-.has-big-responsive-font-size.has-big-responsive-font-size {
+.has-xl-responsive-font-size.has-xl-responsive-font-size {
 	@include fluid-typography(72, 380);
 }
 
@@ -976,4 +960,81 @@ body {
 	margin-top: 5rem;
 	margin-bottom: 2rem;
 	font-size: var(--wp--preset--font-size--xxl);
+}
+
+/**
+ * Block editor hacks.
+ *
+ * This stylesheet exists to temporarily override aspects of the block editor as they are improved and developed in the core project.
+ * Styles here have the lowest possible specificity, not being output inline, and with no `editor-styles-wrapper` prefix.
+ */
+
+// Minimal adminbar.
+html[lang] {
+	margin-top: 0 !important;
+}
+
+html:not(.interface-interface-skeleton__html-container) body.admin-bar {
+	padding-top: var(--wp--custom--spacing--unit-20) !important;
+
+	#wpadminbar {
+		position: absolute;
+		mix-blend-mode: multiply;
+		background: transparent;
+		width: auto;
+		left: 0;
+		right: auto;
+		text-align: center;
+		height: auto;
+		padding: 0 8px;
+		top: auto;
+		bottom: 0;
+
+		* {
+			font-size: 11px !important;
+			font-weight: 500;
+			color: #666 !important;
+			padding: 0 !important;
+			height: auto !important;
+			background: none !important;
+			line-height: 2;
+		}
+
+		ul {
+			display: flex;
+			gap: 8px;
+		}
+
+		.ab-item {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		*::before {
+			content: none !important;
+		}
+
+		#wp-admin-bar-top-secondary {
+			display: none;
+		}
+
+		#wp-admin-bar-root-default {
+			> * {
+				display: none;
+
+				.ab-sub-wrapper {
+					display: none;
+				}
+			}
+
+			> #wp-admin-bar-edit {
+				display: inherit;
+			}
+
+			> #wp-admin-bar-site-name {
+				display: inherit;
+			}
+		}
+	}
 }
