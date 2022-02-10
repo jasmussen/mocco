@@ -14,7 +14,7 @@ Tags: translation-ready
  * Variables.
  */
 @media (prefers-color-scheme: dark) {
-  body {
+  html body {
     --wp--preset--color--interface-mode-black: #fff;
     --wp--preset--color--interface-mode-white: #000;
     --wp--preset--color--interface-mode-gray: #333;
