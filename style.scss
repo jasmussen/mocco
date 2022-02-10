@@ -34,23 +34,18 @@ $colors: (
 	'pretty-gray' 'black' 'black',
 );
 
-// Output editor helper classes for existing colors.
+// Output contrast colors for specific background colors.
 @each $color, $contrast-color, $link-color in $colors {
 
 	// Background colors.
 	:where(.has-#{$color}-background-color) {
 		color: var(--wp--preset--color--#{$contrast-color});
-
-		/*a,
-		a:hover {
-			color: currentColor;
-		}*/
 	}
 }
 
 
 /**
- * Base styles and resets.
+ * Base styles.
  */
 
 :where(*) {
@@ -71,10 +66,6 @@ $colors: (
 
 ::placeholder {
 	color: rgba(var(--wp--preset--color--interface-mode-black), .8);
-}
-
-html {
-	padding: var(--wp--custom--spacing--unit-20);
 }
 
 a {
@@ -162,7 +153,8 @@ strong {
 	}
 }
 
-// Hide the home icon. @todo: needs classes for it.
+// Hide the home icon.
+// @todo: can be removed when https://github.com/WordPress/gutenberg/pull/37301 lands.
 .wp-block-page-list > li:first-child {
 	display: none;
 }
@@ -440,11 +432,12 @@ figcaption {
  */
 
 // Custom template part name.
-.site-header {
+.wp-site-blocks .site-header {
 	// Responsive margin. max obfuscated for sass compat.
-	margin-bottom: m#{a}x( var(--wp--custom--spacing--unit-60), 6vw);
+	margin-bottom: m#{a}x( var(--wp--custom--spacing--unit-60), 6vw) !important;
 
 	// Use site title block for SVG logo.
+	// @todo: use Home block when it can become an icon.
 	.wp-block-site-title {
 		margin: 0 auto 0 0;
 		position: relative;
@@ -600,6 +593,7 @@ input[type="text"] {
 	display: none;
 }
 
+// @todo: update to new responsive font size.
 .wp-block-post-content {
 	font-size: clamp(
 		var(--wp--preset--font-size--medium),
@@ -746,7 +740,7 @@ input[type="text"] {
  */
 
 // All archive pages / singular.
-.wp-block-post-template {
+.wp-site-blocks .wp-block-post-template {
 	// Responsive margin. max obfuscated for sass compat.
 	margin-top: m#{a}x( var(--wp--custom--spacing--unit-120), 16vw);
 
@@ -897,7 +891,6 @@ html {
 	}
 }
 
-
 // Viewport sized typography.
 // @todo: explore extracting the variables from theme.json.
 [class*="responsive-font-size"] {
@@ -961,13 +954,6 @@ body {
 	margin-bottom: 2rem;
 	font-size: var(--wp--preset--font-size--xxl);
 }
-
-/**
- * Block editor hacks.
- *
- * This stylesheet exists to temporarily override aspects of the block editor as they are improved and developed in the core project.
- * Styles here have the lowest possible specificity, not being output inline, and with no `editor-styles-wrapper` prefix.
- */
 
 // Minimal adminbar.
 html[lang] {

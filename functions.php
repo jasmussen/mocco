@@ -5,14 +5,6 @@
 
 if ( ! function_exists( 'moccotheme_setup' ) ) {
 	function moccotheme_setup() {
-
-		// Base features.
-		// @todo, these can be retired after 11.8.
-		add_theme_support( 'automatic-feed-links' );
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'responsive-embeds' );
-		add_theme_support( 'editor-styles' );
-
 		// Increase JPEG quality.
 		add_filter( 'jpeg_quality', function( $arg ) { return 90; } );
 
@@ -64,10 +56,6 @@ add_editor_style( GOOGLE_FONTS_URL );
 
 function moccotheme_styles() {
 	wp_enqueue_style( 'moccotheme-style', get_stylesheet_uri() );
-	
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'moccotheme_styles' );
 
