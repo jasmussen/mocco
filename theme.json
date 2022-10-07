@@ -4,16 +4,28 @@
 	"version": 2,
 	"templateParts": [
 		{
+			"area": "header",
 			"name": "header",
-			"area": "header"
+			"title": "Header"
 		},
 		{
+			"area": "footer",
 			"name": "footer",
-			"area": "footer"
+			"title": "Footer"
+		}
+	],
+	"customTemplates": [
+		{
+			"name": "single-work",
+			"postTypes": [
+				"work"
+			],
+			"title": "Work"
 		}
 	],
 	"settings": {
 		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
 		"color": {
 			"link": true,
 			"palette": [
