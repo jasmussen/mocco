@@ -4,7 +4,7 @@ Theme URI:
 Author: joen
 Author URI: https://moc.co
 Description: Hello Mocco
-Version: 1.0.1
+Version: 1.0.2
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: moccotheme
@@ -48,19 +48,7 @@ Tags: translation-ready
 /**
  * Base styles.
  */
-:where(*) {
-  box-sizing: border-box;
-}
-
-:where(figure) {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 :where(img) {
-  display: block;
-  max-width: 100%;
-  height: auto;
   border-radius: var(--wp--custom--border-radius);
 }
 
@@ -127,13 +115,6 @@ h6 {
   margin-top: calc(var(--wp--style--block-gap) + 1rem);
   word-break: break-all;
   word-break: break-word;
-}
-
-ol,
-ul,
-p {
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 strong {
@@ -234,6 +215,7 @@ h2.wp-block-post-title a:not(:hover) {
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 .wp-block-cover .wp-block-cover__inner-container > * {
   max-width: 100%;
@@ -359,15 +341,15 @@ figcaption {
 /**
  * Header.
  */
-.wp-site-blocks .site-header {
+.wp-site-blocks header {
   margin-bottom: max(var(--wp--custom--spacing--unit-60), 6vw) !important;
 }
-.wp-site-blocks .site-header .wp-block-site-title {
+.wp-site-blocks header .wp-block-site-title {
   margin: 0 auto 0 0;
   position: relative;
   z-index: 1;
 }
-.wp-site-blocks .site-header .wp-block-site-title a {
+.wp-site-blocks header .wp-block-site-title a {
   background: var(--wp--preset--color--interface-mode-black);
   color: var(--wp--preset--color--interface-mode-black);
   display: block;
@@ -381,7 +363,7 @@ figcaption {
   z-index: 1;
   font-size: 0;
 }
-.wp-site-blocks .site-header .wp-block-site-title a::after {
+.wp-site-blocks header .wp-block-site-title a::after {
   content: "";
   display: block;
   position: absolute;
@@ -393,7 +375,7 @@ figcaption {
   -webkit-mask-image: url("assets/logo.svg");
           mask-image: url("assets/logo.svg");
 }
-.wp-site-blocks .site-header .wp-block-site-title a:focus {
+.wp-site-blocks header .wp-block-site-title a:focus {
   box-shadow: 0 0 0 var(--wp--custom--border-width) var(--wp--preset--color--light-blue);
 }
 
@@ -632,6 +614,7 @@ html:not(.has-modal-open) .wp-site-blocks {
   bottom: 0;
   left: 0;
   padding: var(--wp--custom--spacing--unit-20);
+  box-sizing: border-box;
   perspective: 30vw;
 }
 html:not(.has-modal-open) .wp-block-post-template,

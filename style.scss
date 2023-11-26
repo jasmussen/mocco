@@ -4,7 +4,7 @@ Theme URI:
 Author: joen
 Author URI: https://moc.co
 Description: Hello Mocco
-Version: 1.0.1
+Version: 1.0.2
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: moccotheme
@@ -48,19 +48,8 @@ $colors: (
  * Base styles.
  */
 
-:where(*) {
-	box-sizing: border-box;
-}
-
-:where(figure) {
-	margin-left: 0;
-	margin-right: 0;
-}
-
 :where(img) {
-	display: block;
-	max-width: 100%;
-	height: auto;
+	// Move this to theme.json. It doesn't appear to work atm.
 	border-radius: var(--wp--custom--border-radius);
 }
 
@@ -127,13 +116,6 @@ h6 {
 	margin-top: calc(var(--wp--style--block-gap) + 1rem);
 	word-break: break-all; // Standard.
 	word-break: break-word; // Webkit.
-}
-
-ol,
-ul,
-p {
-	margin-top: 0;
-	margin-bottom: 0;
 }
 
 strong {
@@ -266,6 +248,7 @@ h2.wp-block-post-title {
 		height: 100%;
 		display: flex;
 		flex-direction: column;
+		box-sizing: border-box;
 
 		// Cause word-wrap.
 		> * {
@@ -432,7 +415,7 @@ figcaption {
  */
 
 // Custom template part name.
-.wp-site-blocks .site-header {
+.wp-site-blocks header {
 	// Responsive margin. max obfuscated for sass compat.
 	margin-bottom: m#{a}x( var(--wp--custom--spacing--unit-60), 6vw) !important;
 
@@ -779,7 +762,8 @@ html {
 			bottom: 0;
 			left: 0;
 			padding: var(--wp--custom--spacing--unit-20);
-		
+			box-sizing: border-box;
+
 			// The lower the number, the bigger the effect.
 			perspective: 30vw;
 		}
